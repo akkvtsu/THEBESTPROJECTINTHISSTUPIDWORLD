@@ -25,22 +25,28 @@ public class BigMonster extends Monster{
         System.out.println("Решите задачу:");
         if (difficultGame == 1){
             return taskMonster();
-        }else  {
-            int x = r.nextInt(10 * (difficultGame - 1), 10 * difficultGame);
-            int y = r.nextInt(10 * (difficultGame - 1), 10 * difficultGame);
-            int z = r.nextInt(100 * (difficultGame - 1), 100 * difficultGame);
-            int trueAnswer = x * y - z;
-            System.out.println("Реши пример: " + x + " * " + y + " - " + z + " = ?");
-            Scanner sc = new Scanner(System.in);
-            int ans = sc.nextInt();
-            if (trueAnswer == ans) {
-                System.out.println("Верно! Ты победил монстра");
-                return true;
-            }
-            System.out.println("Ты проиграл эту битву!");
-            return false;
-        }
+        }else {
+            while (true) {
+                int x = r.nextInt(10 * (difficultGame - 1), 10 * difficultGame);
+                int y = r.nextInt(10 * (difficultGame - 1), 10 * difficultGame);
+                int z = r.nextInt(100 * (difficultGame - 1), 100 * difficultGame);
+                int trueAnswer = x * y - z;
+                System.out.println("Реши пример: " + x + " * " + y + " - " + z + " = ?");
+                Scanner sc = new Scanner(System.in);
+                if (sc.hasNextInt()) {
+                    int ans = sc.nextInt();
+                    if (trueAnswer == ans) {
+                        System.out.println("Верно! Ты победил монстра");
+                        return true;
+                    }
+                    System.out.println("Ты проиграл эту битву!");
+                    return false;
+                }
+                System.out.println("Некорректный ввод, Введите число");
+                sc.next();
 
+            }
+        }
 
     }
 
